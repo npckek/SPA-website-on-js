@@ -488,9 +488,7 @@ header ul li:before {
   appearance: none;
   margin: 0;
 }
-.content .counter input[type=number] {
-  -moz-appearance: textfield;
-}
+
 .content .more {
   display: block;
   margin: 0 auto;

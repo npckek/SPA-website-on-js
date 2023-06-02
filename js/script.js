@@ -37,16 +37,18 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // Timer 
 
-    let deadline = '2025-07-07';
+    let deadline = '2030-08-08';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
         seconds = Math.floor((t/1000) % 60),
         minutes = Math.floor((t/1000/60) % 60),
-        hours = Math.floor((t/(1000*60*60)));
+        hours = Math.floor((t/1000/60/60) % 24),
+        days = Math.floor((t/(1000*60*60*24)));
 
         return {
             'total' : t,
+            'days' : days,
             'hours' : hours,
             'minutes' : minutes,
             'seconds' : seconds
@@ -55,6 +57,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     function setClock(id, endtime) {
         let timer = document.getElementById(id),
+            days = timer.querySelector('.days'),
             hours = timer.querySelector('.hours'),
             minutes = timer.querySelector('.minutes'),
             seconds = timer.querySelector('.seconds'),
@@ -69,12 +72,14 @@ window.addEventListener('DOMContentLoaded', function() {
                         } else return num;
                     };
 
+            days.textContent = addZero(t.hours);
             hours.textContent = addZero(t.hours);
             minutes.textContent = addZero(t.minutes);
             seconds.textContent = addZero(t.seconds);
 
             if (t.total <= 0) {
                 clearInterval(timeInterval);
+                days.textContent = '00';
                 hours.textContent = '00';
                 minutes.textContent = '00';
                 seconds.textContent = '00';
@@ -171,9 +176,9 @@ window.addEventListener('DOMContentLoaded', function() {
         }
 
         slides.forEach((item) => item.style.display = 'none');
-        // for (let i = 0; i < slides.length; i++) {
-        //     slides[i].style.display = 'none';
-        // }
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = 'none';
+        }
         dots.forEach((item) => item.classList.remove('dot-active'));
 
         slides[slideIndex - 1].style.display = 'block';
