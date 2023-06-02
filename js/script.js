@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // Timer 
 
-    let deadline = '2030-08-08';
+    let deadline = '2024-01-01';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', function() {
                         } else return num;
                     };
 
-            days.textContent = addZero(t.hours);
+            days.textContent = addZero(t.days);
             hours.textContent = addZero(t.hours);
             minutes.textContent = addZero(t.minutes);
             seconds.textContent = addZero(t.seconds);
